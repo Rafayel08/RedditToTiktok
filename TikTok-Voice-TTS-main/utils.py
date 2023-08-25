@@ -90,8 +90,8 @@ def make_video(subreddit, listing, limit, timeframe):
 
     get_background_video('https://www.youtube.com/watch?v=Pt5_GSKIWQM')
 
-    import os
-    os.environ["IMAGEIO_FFMPEG_EXE"] = "ffmpeg"
+    # import os
+    # os.environ["IMAGEIO_FFMPEG_EXE"] = "ffmpeg"
     from moviepy.editor import AudioFileClip, TextClip, VideoFileClip, CompositeVideoClip
     # import speech_recognition as sr
     # import datetime

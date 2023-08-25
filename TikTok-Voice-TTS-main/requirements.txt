@@ -1,0 +1,7 @@
+requests
+playsound
+threading
+moviepy
+pandas
+subprocess.run
+vosk

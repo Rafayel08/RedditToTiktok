@@ -4,3 +4,4 @@ moviepy
 pandas
 subprocess.run
 vosk
+pytube

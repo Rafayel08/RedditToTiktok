@@ -13,7 +13,7 @@ import subprocess
 
 # install_xdg_utils()
 made=False
-open_file()
+# open_file()
 with st.sidebar:
     subreddit=st.text_input('subreddit')
     limit=st.number_input('limit')

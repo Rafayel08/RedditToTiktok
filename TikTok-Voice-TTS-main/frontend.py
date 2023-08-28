@@ -6,6 +6,7 @@ from utils import *
 # timeframe = 'month' #hour, day, week, month, year, all
 # listing = 'top' # controversial, best, hot, new, random, rising, top
 made=False
+open_file()
 with st.sidebar:
     subreddit=st.text_input('subreddit')
     limit=st.number_input('limit')

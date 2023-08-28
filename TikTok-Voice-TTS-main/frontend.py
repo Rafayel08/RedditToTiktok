@@ -7,11 +7,11 @@ from utils import *
 # listing = 'top' # controversial, best, hot, new, random, rising, top
 import subprocess
 
-def install_xdg_utils():
-    command = ['sudo', 'apt-get', 'install', '--reinstall', 'xdg-utils']
-    subprocess.run(command)
+# def install_xdg_utils():
+#     command = ['sudo', 'apt-get', 'install', '--reinstall', 'xdg-utils']
+#     subprocess.run(command)
 
-install_xdg_utils()
+# install_xdg_utils()
 made=False
 open_file()
 with st.sidebar:

@@ -107,7 +107,7 @@ def make_video(subreddit, listing, limit, timeframe):
     # subprocess.run('open ffmpeg-111772-g8653dcaf7d_copy.7z')
 
     import os
-    os.environ["IMAGEIO_FFMPEG_EXE"] = "ffmpeg"
+    # os.environ["IMAGEIO_FFMPEG_EXE"] = "ffmpeg"
     from moviepy.editor import AudioFileClip, TextClip, VideoFileClip, CompositeVideoClip
     # import speech_recognition as sr
     # import datetime

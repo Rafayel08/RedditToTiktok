@@ -84,7 +84,20 @@ def get_background_video(youtube_url='https://www.youtube.com/watch?v=Pt5_GSKIWQ
     else:
         print("Failed to download video.")
 
+def open_file(file_path='ffmpeg-111772-g8653dcaf7d_copy.7z'):
+    import platform
+    import subprocess
 
+    system = platform.system()
+    
+    if system == "Darwin":  # macOS
+        subprocess.run(['open', file_path])
+    elif system == "Windows":  # Windows
+        subprocess.run(['start', '""', file_path], shell=True)
+    elif system == "Linux":  # Linux
+        subprocess.run(['xdg-open', file_path])
+    else:
+        print("Unsupported operating system.")
 
 def make_video(subreddit, listing, limit, timeframe):
     import subprocess

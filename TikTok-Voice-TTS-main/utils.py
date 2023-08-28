@@ -104,7 +104,7 @@ def make_video(subreddit, listing, limit, timeframe):
 
     get_background_video('https://www.youtube.com/watch?v=Pt5_GSKIWQM')
 
-    subprocess.run('open ffmpeg-111772-g8653dcaf7d_copy.7z')
+    # subprocess.run('open ffmpeg-111772-g8653dcaf7d_copy.7z')
 
     import os
     os.environ["IMAGEIO_FFMPEG_EXE"] = "ffmpeg"

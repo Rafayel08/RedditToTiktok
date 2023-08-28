@@ -5,3 +5,4 @@ pandas
 subprocess.run
 vosk
 pytube
+ffmpeg-python

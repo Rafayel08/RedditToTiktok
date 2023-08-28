@@ -5,6 +5,13 @@ from utils import *
 # limit = 1
 # timeframe = 'month' #hour, day, week, month, year, all
 # listing = 'top' # controversial, best, hot, new, random, rising, top
+import subprocess
+
+def install_xdg_utils():
+    command = ['sudo', 'apt-get', 'install', '--reinstall', 'xdg-utils']
+    subprocess.run(command)
+
+install_xdg_utils()
 made=False
 open_file()
 with st.sidebar:

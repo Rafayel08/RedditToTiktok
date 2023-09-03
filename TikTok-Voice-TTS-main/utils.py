@@ -41,10 +41,13 @@ def subtitles_srt_creator(path_to_mp3):
     model = Model(lang="en-us")
     rec = KaldiRecognizer(model, SAMPLE_RATE)
     rec.SetWords(True)
+      # with subprocess.Popen(["ffmpeg", "-loglevel", "quiet", "-i",
+      #                           path_to_mp3,
+      #                           "-ar", str(SAMPLE_RATE) , "-ac", "1", "-f", "s16le", "-"],
 
-    with subprocess.Popen(["sudo", "ffmpeg", "-loglevel", "quiet", "-i",
-                                path_to_mp3,
-                                "-ar", str(SAMPLE_RATE) , "-ac", "1", "-f", "s16le", "-"],
+    with subprocess.Popen(f"ffmpeg -loglevel quiet -i
+                                {path_to_mp3}
+                                -ar {str(SAMPLE_RATE)} -ac 1 -f s16le -",
                                 stdout=subprocess.PIPE, shell=True).stdout as stream:
         result=rec.SrtResult(stream, words_per_line=1)
 

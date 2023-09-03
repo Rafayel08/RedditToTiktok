@@ -45,7 +45,7 @@ def subtitles_srt_creator(path_to_mp3):
     with subprocess.Popen(["sudo", "ffmpeg", "-loglevel", "quiet", "-i",
                                 path_to_mp3,
                                 "-ar", str(SAMPLE_RATE) , "-ac", "1", "-f", "s16le", "-"],
-                                stdout=subprocess.PIPE).stdout as stream:
+                                stdout=subprocess.PIPE, shell=True).stdout as stream:
         result=rec.SrtResult(stream, words_per_line=1)
 
     srt_blocks = result.split('\n\n')

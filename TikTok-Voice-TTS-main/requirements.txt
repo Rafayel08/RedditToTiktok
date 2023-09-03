@@ -1,9 +1,0 @@
-requests
-playsound
-moviepy
-pandas
-subprocess.run
-vosk
-pytube
-ffmpeg-python
-argparse

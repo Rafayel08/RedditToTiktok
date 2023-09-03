@@ -213,10 +213,10 @@ def make_video(subreddit, listing, limit, timeframe):
     final_clip = final_clip.crop(x1=1166.6, y1=0, x2=2246.6, y2=1920)
 
     output_file = "output_video.mp4"
-
-    print('done with this')
     
     final_clip.write_videofile(output_file, codec="libx264")
+
+    print('done with this')
 
     background_video_clip.reader.close()
     background_video_clip.audio.reader.close_proc()

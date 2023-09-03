@@ -44,6 +44,7 @@ def subtitles_srt_creator(path_to_mp3):
     with subprocess.Popen(["ffmpeg", "-loglevel", "quiet", "-i", path_to_mp3, "-ar", str(SAMPLE_RATE) , "-ac", "1", "-f", "s16le", "-"], stdout=subprocess.PIPE, shell=True).stdout as stream:
         # with subprocess.Popen(f"ffmpeg -loglevel quiet -i {path_to_mp3} -ar {str(SAMPLE_RATE)} -ac 1 -f s16le -", stdout=subprocess.PIPE, shell=True).stdout as stream:
         result=rec.SrtResult(stream, words_per_line=1)
+    
     print('Done')
 
     srt_blocks = result.split('\n\n')
@@ -212,6 +213,9 @@ def make_video(subreddit, listing, limit, timeframe):
     final_clip = final_clip.crop(x1=1166.6, y1=0, x2=2246.6, y2=1920)
 
     output_file = "output_video.mp4"
+
+    print('done with this')
+    
     final_clip.write_videofile(output_file, codec="libx264")
 
     background_video_clip.reader.close()

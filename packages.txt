@@ -1,2 +1,2 @@
 ffmpeg
-imagemagick
+imagemagick-6.q16

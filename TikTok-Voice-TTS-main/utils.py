@@ -28,11 +28,51 @@ def get_results(r):
     df = pd.DataFrame.from_dict(myDict, orient='index')
     return df
 
+# def subtitles_srt_creator(path_to_mp3):
+#     import subprocess
+#     # import sys
+
+#     from vosk import Model, KaldiRecognizer, SetLogLevel
+
+#     SAMPLE_RATE = 16000
+
+#     SetLogLevel(-1)
+
+#     model = Model(lang="en-us")
+#     rec = KaldiRecognizer(model, SAMPLE_RATE)
+#     rec.SetWords(True)
+#     with subprocess.Popen(["ffmpeg", "-loglevel", "quiet", "-i", path_to_mp3, "-ar", str(SAMPLE_RATE) , "-ac", "1", "-f", "s16le", "-"], stdout=subprocess.PIPE, shell=True).stdout as stream:
+#         # with subprocess.Popen(f"ffmpeg -loglevel quiet -i {path_to_mp3} -ar {str(SAMPLE_RATE)} -ac 1 -f s16le -", stdout=subprocess.PIPE, shell=True).stdout as stream:
+#         result=rec.SrtResult(stream, words_per_line=1)
+    
+#     print('Done')
+
+#     srt_blocks = result.split('\n\n')
+
+#     with open('output.srt', 'w') as srt_file:
+#         for i, srt_block in enumerate(srt_blocks):
+#             if srt_blocks[i]==srt_blocks[-1]:
+#                 pass
+#             else:
+#                 lines = srt_block.strip().split('\n')
+#                 # print(lines)
+#                 sequence_number = lines[0]
+#                 # print(sequence_number)
+#                 time_range = lines[1]
+#                 # print(time_range)
+#                 subtitle_text = "\n".join(lines[2:])
+                
+#                 srt_file.write(f"{sequence_number}\n{time_range}\n{subtitle_text}\n\n")
+#                 # print(srt_block)
+#     print("Subtitle file generated successfully.")
+
 def subtitles_srt_creator(path_to_mp3):
     import subprocess
     # import sys
 
     from vosk import Model, KaldiRecognizer, SetLogLevel
+
+    import ffmpeg
 
     SAMPLE_RATE = 16000
 
@@ -41,11 +81,20 @@ def subtitles_srt_creator(path_to_mp3):
     model = Model(lang="en-us")
     rec = KaldiRecognizer(model, SAMPLE_RATE)
     rec.SetWords(True)
-    with subprocess.Popen(["ffmpeg", "-loglevel", "quiet", "-i", path_to_mp3, "-ar", str(SAMPLE_RATE) , "-ac", "1", "-f", "s16le", "-"], stdout=subprocess.PIPE, shell=True).stdout as stream:
-        # with subprocess.Popen(f"ffmpeg -loglevel quiet -i {path_to_mp3} -ar {str(SAMPLE_RATE)} -ac 1 -f s16le -", stdout=subprocess.PIPE, shell=True).stdout as stream:
-        result=rec.SrtResult(stream, words_per_line=1)
-    
-    print('Done')
+
+    # with subprocess.Popen(["ffmpeg", "-loglevel", "quiet", "-i",
+    #                             path_to_mp3,
+    #                             "-ar", str(SAMPLE_RATE) , "-ac", "1", "-f", "s16le", "-"],
+    #                             stdout=subprocess.PIPE).stdout as stream:
+    #     result=rec.SrtResult(stream, words_per_line=1)
+
+    input_file = path_to_mp3
+    output_pipe = ffmpeg.input(input_file, loglevel="quiet").output(
+        "pipe:", format="s16le", ar=str(SAMPLE_RATE), ac=1
+    ).run_async(pipe_stdout=True)
+
+    with output_pipe.stdout as stream:
+        result = rec.SrtResult(stream, words_per_line=1)
 
     srt_blocks = result.split('\n\n')
 

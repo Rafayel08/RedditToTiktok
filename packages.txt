@@ -1,2 +1,3 @@
 ffmpeg
 imagemagick-6.q16
+php-imagick
